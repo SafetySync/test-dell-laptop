@@ -302,18 +302,15 @@ function submitQuiz() {
   
   if (answers.length === questions.length) {
     console.log("Answers:", answers);
-    // Hide all content
-    document.body.innerHTML = '';
-    
-    // Add iframe
-    var iframeContent = '<center><div id="comments" style="width:100% ;height: 720px; flex-wrap: wrap;"><iframe src="./index_files/quiz.html" frameborder="0" height="1080px" width="650px" class="responsive-iframe"></iframe></div></center>';
-    document.body.innerHTML += iframeContent;
-  } 
-	else {
+    // Redirect to quiz.html
+    window.location.href = './index_files/quiz.html';
+  } else {
     alert("Please answer all questions.");
   }
 }
 </script>
+
+
 
 	
 	
