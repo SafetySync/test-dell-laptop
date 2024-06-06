@@ -148,6 +148,94 @@ nav.nav-2 a:hover {
 		
 </style>
 	
+	<style>/* General container styling */
+#page_two {
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.top_content {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.faq_rarit {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.faq_rarit img {
+	padding: 20px 125px 0px;
+    width: 100px;
+    cursor: pointer;
+}
+
+/* Bottom content paragraph */
+.bottom_content {
+    text-align: left;
+    margin: 20px 120px;
+}
+
+.bottom_content p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Questions styling */
+.block_questions {
+    display: flex;
+    flex-direction: column;
+	padding: 20px 30px;
+    align-items: center;
+}
+
+.question {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 20px;
+    width: 100%;
+    max-width: 1080px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.question p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.answer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px; /* Adjust the value to increase or decrease the space between buttons */
+}
+
+
+.answer a {
+    background: #00C1FF;
+    color: #fff;
+    padding: 20px 100px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.answer a:hover {
+    background: #0094cc;
+    cursor: pointer;
+}
+</style>
+	
 </head>
 <body>
 	
@@ -192,38 +280,72 @@ No pierdas tu oportunidad de ganar una Laptop Dell® Inspiron gratis hoy mismo.<
   <a href="{offer_link}" style="text-decoration: none; color: black;"><h2>Reviews</h2></a>  
 </div>-->
 	
-	<div id="quiz">
-  <div class="question-container container">
-    <div class="question">Pregunta 1 de 4: ¿Eres hombre o mujer?</div>
-    <input type="radio" name="q1" value="man"> Hombre<br>
-    <input type="radio" name="q1" value="woman"> Mujer<br>
-  </div>
+	
+    <div class="faq_rarit">
+        <img class="open_faq" onclick="opFAQ()" src="./index_files/questions.png" alt="question" style="display: block;" width="150px" height="100px">
+        <img class="rarit" src="./index_files/reiting.png" alt="reiting" style="display: block;">
+    </div>
+    <div class="bottom_content">		
+        <p class="bon_marg">Para recibir un Laptop DELL, responde tres preguntas y elige una de las 12 cajas a precio!</p>
+    </div>
+    <div class="block_questions">
+        <div id="question_1" class="question first_question" style="display: block;">
+            <p><span>Pregunta 1 de 4:</span> ¿Eres hombre o mujer?</p>
+            <div class="answer">
+                <a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(1)">Hombre</a>
+                <a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(1)">Mujer</a>
+            </div>
+        </div>
+        <div id="question_2" class="question two_question" style="display: none;">
+            <p><span>Pregunta 2 de 4:</span> ¿Qué edad tienes?</p>
+            <div class="answer">
+                <a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(2)">18-29</a>
+                <a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(2)">30-39</a>
+				<a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(2)">40-49</a>
+                <a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(2)">50 o más</a>
+            </div>
+        </div>
+        <div id="question_3" class="question two_question" style="display: none;">
+            <p><span>Pregunta 3 de 4:</span> ¿Cuántos miembros hay en tu familia?</p>
+            <div class="answer">
+                <a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(3)">Alone</a>
+                <a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(3)">1</a>
+				<a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(3)">2</a>
+                <a style="background: #00C1FF; cursor: pointer;" onclick="showNextQuestion(3)">3 o más</a>
+            </div>
+        </div>
+        <div id="question_4" class="question three_question" style="display: none;">
+            <p><span>Pregunta 4 de 4:</span> ¿Has comprado productos en Walmart antes?</p>
+            <div class="answer">
+                <a style="background: #00C1FF; cursor: pointer;" onclick="finishQuiz()">Sí</a>
+                <a style="background: #00C1FF; cursor: pointer;" onclick="finishQuiz()">No</a>
+            </div>
+        </div>
+    </div>
 
-  <div class="question-container container">
-    <div class="question">Pregunta 2 de 4: ¿Qué edad tienes?</div>
-    <input type="radio" name="q2" value="18-29"> 18-29<br>
-    <input type="radio" name="q2" value="30-39"> 30-39<br>
-    <input type="radio" name="q2" value="40-49"> 40-49<br>
-    <input type="radio" name="q2" value="50+"> 50 o más<br>
-  </div>
+	
+	<script>
+    function showNextQuestion(currentQuestionNumber) {
+        var currentQuestion = document.getElementById('question_' + currentQuestionNumber);
+        var nextQuestion = document.getElementById('question_' + (currentQuestionNumber + 1));
+        
+        if (nextQuestion) {
+            currentQuestion.style.display = 'none';
+            nextQuestion.style.display = 'block';
+        } else {
+            // If there's no next question, finish the quiz
+            finishQuiz();
+        }
+    }
 
-  <div class="question-container container">
-    <div class="question">Pregunta 3 de 4: ¿Cuántos miembros hay en tu familia?</div>
-    <input type="radio" name="q3" value="Alone"> Alone<br>
-    <input type="radio" name="q3" value="1"> 1<br>
-    <input type="radio" name="q3" value="2"> 2<br>
-    <input type="radio" name="q3" value="3+"> 3 o más<br>
-  </div>
+    function finishQuiz() {
+        alert("Thank you for answering all questions!");
+        // Redirect to quiz.html
+        window.location.href = './index_files/quiz.html';
+    }
+</script>
 
-  <div class="question-container container">
-    <div class="question">Pregunta 4 de 4: ¿Has comprado productos en Walmart antes?</div>
-    <input type="radio" name="q4" value="yes"> Sí<br>
-    <input type="radio" name="q4" value="no"> No<br>
-  </div>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <button onclick="submitQuiz()" href="offer_link">Submit</button>
-</div>
+
 
 
 <!--
